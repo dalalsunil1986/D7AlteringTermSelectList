@@ -1,0 +1,4 @@
+name = custom tagger
+description = "Provides field alteration for select list in article content type"
+core = 7.x
+package = "Custom"

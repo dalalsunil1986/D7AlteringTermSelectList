@@ -1,0 +1,21 @@
+<?php
+
+/*
+ * Implementation of hook_form_alter()
+ */
+function custom_tagger_form_alter(&$form, &$form_state, $form_id){
+
+// Change the form id, whichever we need.
+    if($form_id == "article_node_form") {
+        $result = array();
+        // 2 is the vocabulary id
+        $parent_tree = taxonomy_get_tree('2', $parent = 0, $max_depth = 1, $load_entities = FALSE);
+        foreach ($parent_tree as $value) {
+            $result[$value->tid] = $value->name;
+        }
+        // Change the term field name, whichever we need.
+        $form['field_location']['und']['#options'] = $result;
+    }
+}
+
+?>
